@@ -1,0 +1,18 @@
+syntax = "proto3";
+import "ForceUpdateInfo.proto";
+import "StopServerInfo.proto";
+import "RegionInfo.proto";
+
+option csharp_namespace = "FurinaImpact.Protocol";
+message QueryCurrRegionHttpRsp {
+  oneof detail {
+    ForceUpdateInfo force_udpate = 4;
+    StopServerInfo stop_server = 5;
+  }
+  RegionInfo region_info = 3;
+  bytes client_secret_key = 11;
+  bytes region_custom_config_encrypted = 12;
+  bytes client_region_custom_config_encrypted = 13;
+  string msg = 2;
+  int32 retcode = 1;
+}

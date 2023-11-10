@@ -1,0 +1,6 @@
+syntax = "proto3";
+import "Vector.proto";
+option csharp_namespace = "FurinaImpact.Protocol";
+message EntityClientExtraInfo {
+  Vector skill_anchor_position = 1;
+}

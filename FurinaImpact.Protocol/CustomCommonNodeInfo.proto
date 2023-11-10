@@ -1,0 +1,7 @@
+syntax = "proto3";
+option csharp_namespace = "FurinaImpact.Protocol";
+message CustomCommonNodeInfo {
+  string slot_identifier = 3;
+  int32 parent_index = 1;
+  uint32 config_id = 2;
+}

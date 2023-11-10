@@ -1,0 +1,9 @@
+syntax = "proto3";
+import "ResVersionConfig.proto";
+
+option csharp_namespace = "FurinaImpact.Protocol";
+message PlayerLoginRsp {
+  string game_biz = 9;
+  string country_code = 192;
+  ResVersionConfig res_version_config = 650;
+}

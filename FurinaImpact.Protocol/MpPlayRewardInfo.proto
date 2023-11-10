@@ -1,0 +1,7 @@
+syntax = "proto3";
+option csharp_namespace = "FurinaImpact.Protocol";
+message MpPlayRewardInfo {
+  repeated uint32 qualify_uid_list = 3;
+  repeated uint32 remain_uid_list = 2;
+  uint32 resin = 1;
+}

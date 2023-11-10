@@ -1,0 +1,15 @@
+syntax = "proto3";
+import "Vector.proto";
+import "MotionState.proto";
+option csharp_namespace = "FurinaImpact.Protocol";
+message MotionInfo {
+  Vector rot = 2;
+  Vector ref_pos = 6;
+  Vector pos = 1;
+  repeated Vector params = 5;
+  Vector speed = 3;
+  uint32 ref_id = 7;
+  uint32 scene_time = 8;
+  uint64 interval_velocity = 9;
+  MotionState state = 4;
+}

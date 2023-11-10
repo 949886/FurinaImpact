@@ -1,0 +1,19 @@
+syntax = "proto3";
+import "Vector.proto";
+
+option csharp_namespace = "FurinaImpact.Protocol";
+message PlayerEnterSceneNotify {
+	string scene_transaction = 57;
+	Vector pos = 9;
+	uint32 target_uid = 4;
+	uint64 scene_begin_time = 14;
+	uint32 scene_id = 10;
+	repeated uint32 scene_tag_id_list = 11;
+	uint32 enter_scene_token = 8;
+	uint32 unk_3 = 3;
+	uint32 unk_13 = 13;
+	uint32 unk_449 = 449;
+	Vector prev_pos = 525;
+	uint32 unk_834 = 834;
+	uint32 unk_uid_1020 = 1020;
+}

@@ -1,0 +1,21 @@
+syntax = "proto3";
+import "AbilitySyncStateInfo.proto";
+import "SceneAvatarInfo.proto";
+import "AbilityControlBlock.proto";
+import "ServerBuff.proto";
+import "AvatarInfo.proto";
+import "SceneEntityInfo.proto";
+option csharp_namespace = "FurinaImpact.Protocol";
+message SceneTeamAvatar {
+//  SceneAvatarInfo scene_avatar_info = 6;
+  AbilityControlBlock ability_control_block = 10;
+//  repeated ServerBuff server_buff_list = 9;
+  SceneEntityInfo scene_entity_info = 6;
+//  AvatarInfo avatar_info = 7;
+  uint32 entity_id = 14;
+  uint32 weapon_entity_id = 15;
+  uint64 avatar_guid = 3;
+  uint64 weapon_guid = 1;
+  uint32 scene_id = 7;
+  uint32 player_uid = 4;
+}

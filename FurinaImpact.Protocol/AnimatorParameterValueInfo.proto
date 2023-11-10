@@ -1,0 +1,10 @@
+syntax = "proto3";
+option csharp_namespace = "FurinaImpact.Protocol";
+message AnimatorParameterValueInfo {
+  oneof para_val {
+    int32 int_val = 2;
+    float float_val = 3;
+    bool bool_val = 4;
+  }
+  uint32 para_type = 1;
+}

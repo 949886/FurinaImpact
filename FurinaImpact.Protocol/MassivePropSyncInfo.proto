@@ -1,0 +1,7 @@
+syntax = "proto3";
+import "MassivePropParam.proto";
+option csharp_namespace = "FurinaImpact.Protocol";
+message MassivePropSyncInfo {
+  repeated MassivePropParam prop_list = 2;
+  int64 id = 1;
+}

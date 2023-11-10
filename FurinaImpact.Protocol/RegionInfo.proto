@@ -1,0 +1,35 @@
+syntax = "proto3";
+import "ResVersionConfig.proto";
+
+option csharp_namespace = "FurinaImpact.Protocol";
+message RegionInfo {
+  string user_center_url = 30;
+  string client_data_md5 = 19;
+  string resource_url = 8;
+  string handbook_url = 16;
+  string client_silence_data_md5 = 20;
+  string area_type = 7;
+  string gateserver_ip = 1;
+  bytes secret_key = 23;
+  string next_resource_url = 34;
+  ResVersionConfig next_res_version_config = 35;
+  string official_community_url = 24;
+  string account_bind_url = 31;
+  string pay_callback_url = 3;
+  string resource_url_bak = 12;
+  ResVersionConfig res_version_config = 22;
+  string game_biz = 36;
+  string feedback_url = 10;
+  string client_silence_version_suffix = 27;
+  string data_url = 9;
+  string client_version_suffix = 26;
+  string privacy_policy_url = 33;
+  string data_url_bak = 13;
+  string gateserver_domain_name = 29;
+  string bulletin_url = 11;
+  string cdkey_url = 32;
+  bool use_gateserver_domain_name = 28;
+  uint32 gateserver_port = 2;
+  uint32 client_data_version = 14;
+  uint32 client_silence_data_version = 18;
+}

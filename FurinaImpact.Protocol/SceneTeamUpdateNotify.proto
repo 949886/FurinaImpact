@@ -1,0 +1,6 @@
+syntax = "proto3";
+import "SceneTeamAvatar.proto";
+option csharp_namespace = "FurinaImpact.Protocol";
+message SceneTeamUpdateNotify {
+  repeated SceneTeamAvatar scene_team_avatar_list = 1;
+}

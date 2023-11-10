@@ -1,0 +1,8 @@
+syntax = "proto3";
+import "BreakoutPhysicalObject.proto";
+option csharp_namespace = "FurinaImpact.Protocol";
+message BreakoutSpawnPoint {
+  repeated BreakoutPhysicalObject spawned_brick_list = 3;
+  uint32 brick_suite_id = 2;
+  uint32 id = 1;
+}

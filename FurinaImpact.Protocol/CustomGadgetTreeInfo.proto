@@ -1,0 +1,6 @@
+syntax = "proto3";
+import "CustomCommonNodeInfo.proto";
+option csharp_namespace = "FurinaImpact.Protocol";
+message CustomGadgetTreeInfo {
+  repeated CustomCommonNodeInfo node_list = 1;
+}

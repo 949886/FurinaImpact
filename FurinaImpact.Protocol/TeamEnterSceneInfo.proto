@@ -1,0 +1,9 @@
+syntax = "proto3";
+import "AbilityControlBlock.proto";
+import "AbilitySyncStateInfo.proto";
+option csharp_namespace = "FurinaImpact.Protocol";
+message TeamEnterSceneInfo {
+  AbilityControlBlock ability_control_block = 6;
+  AbilitySyncStateInfo team_ability_info = 8;
+  uint32 team_entity_id = 7;
+}

@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+option csharp_namespace = "FurinaImpact.Protocol";
+message PingReq {
+  uint32 client_time = 9;
+  float ue_time = 3;
+}

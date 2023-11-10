@@ -1,0 +1,23 @@
+syntax = "proto3";
+import "BreakoutPhysicalObjectModifier.proto";
+import "BreakoutBrickInfo.proto";
+import "BreakoutVector2.proto";
+option csharp_namespace = "FurinaImpact.Protocol";
+message BreakoutPhysicalObject {
+  repeated BreakoutPhysicalObjectModifier modifier_list = 11;
+  repeated BreakoutBrickInfo info_list = 13;
+  BreakoutVector2 pos = 4;
+  BreakoutVector2 move_dir = 5;
+  uint32 state = 8;
+  uint32 init_peer_id = 7;
+  uint32 speed_increase_count = 15;
+  uint32 index = 2;
+  uint32 element_type = 9;
+  bool is_active = 3;
+  uint32 last_hit_peer_id = 14;
+  int32 offset = 16;
+  int32 total_rotation = 12;
+  uint32 element_reaction_buff = 10;
+  int32 speed = 6;
+  uint32 id = 1;
+}

@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option csharp_namespace = "FurinaImpact.Protocol";
+message RegionSimpleInfo {
+  string dispatch_url = 4;
+  string name = 1;
+  string title = 2;
+  string type = 3;
+}

@@ -1,0 +1,6 @@
+syntax = "proto3";
+option csharp_namespace = "FurinaImpact.Protocol";
+message ScreenInfo {
+  uint32 projector_entity_id = 2;
+  uint32 live_id = 1;
+}

@@ -1,0 +1,5 @@
+syntax = "proto3";
+
+message OpenStateUpdateNotify {
+  map<uint32, uint32> open_state_map = 6;
+}

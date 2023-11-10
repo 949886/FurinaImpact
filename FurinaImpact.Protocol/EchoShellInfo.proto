@@ -1,0 +1,5 @@
+syntax = "proto3";
+option csharp_namespace = "FurinaImpact.Protocol";
+message EchoShellInfo {
+  uint32 shell_id = 1;
+}

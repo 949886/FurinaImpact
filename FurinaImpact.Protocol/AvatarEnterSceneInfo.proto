@@ -1,0 +1,12 @@
+syntax = "proto3";
+import "AbilitySyncStateInfo.proto";
+import "ServerBuff.proto";
+option csharp_namespace = "FurinaImpact.Protocol";
+message AvatarEnterSceneInfo {
+  repeated uint32 buff_id_list = 13;
+  repeated ServerBuff server_buff_list = 15;
+  uint32 avatar_entity_id = 6;
+  uint32 weapon_entity_id = 1;
+  uint64 avatar_guid = 4;
+  uint64 weapon_guid = 11;
+}

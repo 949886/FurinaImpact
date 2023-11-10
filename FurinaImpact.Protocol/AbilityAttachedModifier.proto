@@ -1,0 +1,9 @@
+syntax = "proto3";
+option csharp_namespace = "FurinaImpact.Protocol";
+message AbilityAttachedModifier {
+  bool is_serverbuff_modifier = 4;
+  bool is_invalid = 1;
+  int32 attach_name_hash = 5;
+  uint32 instanced_modifier_id = 3;
+  uint32 owner_entity_id = 2;
+}

@@ -1,0 +1,15 @@
+syntax = "proto3";
+import "Material.proto";
+import "Furniture.proto";
+import "Equip.proto";
+
+option csharp_namespace = "FurinaImpact.Protocol";
+message Item {
+  oneof detail {
+    Material material = 5;
+    Equip equip = 6;
+    Furniture furniture = 7;
+  }
+  uint32 item_id = 1;
+  uint64 guid = 2;
+}

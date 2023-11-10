@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option csharp_namespace = "FurinaImpact.Protocol";
+message StopServerInfo {
+  string content_msg = 4;
+  string url = 3;
+  uint32 stop_begin_time = 1;
+  uint32 stop_end_time = 2;
+}

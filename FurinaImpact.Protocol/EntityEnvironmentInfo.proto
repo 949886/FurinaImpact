@@ -1,0 +1,6 @@
+syntax = "proto3";
+option csharp_namespace = "FurinaImpact.Protocol";
+message EntityEnvironmentInfo {
+  uint32 climate_area_id = 2;
+  uint32 json_climate_type = 1;
+}

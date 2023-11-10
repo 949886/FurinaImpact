@@ -1,0 +1,6 @@
+syntax = "proto3";
+option csharp_namespace = "FurinaImpact.Protocol";
+message GatherGadgetInfo {
+  bool is_forbid_guest = 2;
+  uint32 item_id = 1;
+}

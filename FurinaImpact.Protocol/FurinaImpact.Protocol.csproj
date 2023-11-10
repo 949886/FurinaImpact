@@ -1,0 +1,158 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.25.0" />
+    <PackageReference Include="Google.Protobuf.Tools" Version="3.25.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.59.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="*.proto" ProtoRoot="." GrpcServices="None" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="AbilityAppliedAbility.proto" />
+    <None Remove="AbilityAppliedModifier.proto" />
+    <None Remove="AbilityAttachedModifier.proto" />
+    <None Remove="AbilityControlBlock.proto" />
+    <None Remove="AbilityEmbryo.proto" />
+    <None Remove="AbilityGadgetInfo.proto" />
+    <None Remove="AbilityMixinRecoverInfo.proto" />
+    <None Remove="AbilityScalarType.proto" />
+    <None Remove="AbilityScalarValueEntry.proto" />
+    <None Remove="AbilityString.proto" />
+    <None Remove="AbilitySyncStateInfo.proto" />
+    <None Remove="AnimatorParameterValueInfo.proto" />
+    <None Remove="AnimatorParameterValueInfoPair.proto" />
+    <None Remove="AvatarDataNotify.proto" />
+    <None Remove="AvatarEnterSceneInfo.proto" />
+    <None Remove="AvatarEquipAffixInfo.proto" />
+    <None Remove="AvatarExcelInfo.proto" />
+    <None Remove="AvatarExpeditionState.proto" />
+    <None Remove="AvatarFetterInfo.proto" />
+    <None Remove="AvatarInfo.proto" />
+    <None Remove="AvatarSkillInfo.proto" />
+    <None Remove="AvatarTeam.proto" />
+    <None Remove="BlossomChestInfo.proto" />
+    <None Remove="BossChestInfo.proto" />
+    <None Remove="BreakoutAction.proto" />
+    <None Remove="BreakoutBrickInfo.proto" />
+    <None Remove="BreakoutElementReactionCounter.proto" />
+    <None Remove="BreakoutPhysicalObject.proto" />
+    <None Remove="BreakoutPhysicalObjectModifier.proto" />
+    <None Remove="BreakoutSnapShot.proto" />
+    <None Remove="BreakoutSpawnPoint.proto" />
+    <None Remove="BreakoutSyncConnectUidInfo.proto" />
+    <None Remove="BreakoutVector2.proto" />
+    <None Remove="ClientGadgetInfo.proto" />
+    <None Remove="CoinCollectOperatorInfo.proto" />
+    <None Remove="CurVehicleInfo.proto" />
+    <None Remove="CustomCommonNodeInfo.proto" />
+    <None Remove="CustomGadgetTreeInfo.proto" />
+    <None Remove="DeshretObeliskGadgetInfo.proto" />
+    <None Remove="EchoShellInfo.proto" />
+    <None Remove="EnterSceneDoneReq.proto" />
+    <None Remove="EnterSceneDoneRsp.proto" />
+    <None Remove="EnterScenePeerNotify.proto" />
+    <None Remove="EnterSceneReadyReq.proto" />
+    <None Remove="EnterSceneReadyRsp.proto" />
+    <None Remove="EntityAuthorityInfo.proto" />
+    <None Remove="EntityClientData.proto" />
+    <None Remove="EntityClientExtraInfo.proto" />
+    <None Remove="EntityEnvironmentInfo.proto" />
+    <None Remove="EntityRendererChangedInfo.proto" />
+    <None Remove="Equip.proto" />
+    <None Remove="FetterData.proto" />
+    <None Remove="FightPropPair.proto" />
+    <None Remove="FishPoolInfo.proto" />
+    <None Remove="FishtankFishInfo.proto" />
+    <None Remove="ForceUpdateInfo.proto" />
+    <None Remove="FoundationInfo.proto" />
+    <None Remove="FoundationStatus.proto" />
+    <None Remove="Furniture.proto" />
+    <None Remove="GadgetBornType.proto" />
+    <None Remove="GadgetCrucibleInfo.proto" />
+    <None Remove="GadgetGeneralRewardInfo.proto" />
+    <None Remove="GadgetPlayInfo.proto" />
+    <None Remove="GatherGadgetInfo.proto" />
+    <None Remove="GetPlayerTokenReq.proto" />
+    <None Remove="GetPlayerTokenRsp.proto" />
+    <None Remove="Item.proto" />
+    <None Remove="ItemParam.proto" />
+    <None Remove="MassivePropParam.proto" />
+    <None Remove="MassivePropSyncInfo.proto" />
+    <None Remove="Material.proto" />
+    <None Remove="MaterialDeleteInfo.proto" />
+    <None Remove="MathQuaternion.proto" />
+    <None Remove="ModifierDurability.proto" />
+    <None Remove="MonsterBornType.proto" />
+    <None Remove="MonsterRoute.proto" />
+    <None Remove="MotionInfo.proto" />
+    <None Remove="MotionState.proto" />
+    <None Remove="MovingPlatformType.proto" />
+    <None Remove="MPLevelEntityInfo.proto" />
+    <None Remove="MpPlayRewardInfo.proto" />
+    <None Remove="NightCrowGadgetInfo.proto" />
+    <None Remove="OfferingInfo.proto" />
+    <None Remove="OpenStateUpdateNotify.proto" />
+    <None Remove="PingReq.proto" />
+    <None Remove="PingRsp.proto" />
+    <None Remove="PlatformInfo.proto" />
+    <None Remove="PlayerDataNotify.proto" />
+    <None Remove="PlayerEnterSceneInfoNotify.proto" />
+    <None Remove="PlayerEnterSceneNotify.proto" />
+    <None Remove="PlayerLoginRsp.proto" />
+    <None Remove="PostEnterSceneReq.proto" />
+    <None Remove="PostEnterSceneRsp.proto" />
+    <None Remove="PropPair.proto" />
+    <None Remove="PropValue.proto" />
+    <None Remove="ProtEntityType.proto" />
+    <None Remove="QueryCurrRegionHttpRsp.proto" />
+    <None Remove="RegionInfo.proto" />
+    <None Remove="Reliquary.proto" />
+    <None Remove="ResVersionConfig.proto" />
+    <None Remove="RoguelikeGadgetInfo.proto" />
+    <None Remove="Route.proto" />
+    <None Remove="RoutePoint.proto" />
+    <None Remove="SceneAvatarInfo.proto" />
+    <None Remove="SceneEntityAiInfo.proto" />
+    <None Remove="SceneEntityAppearNotify.proto" />
+    <None Remove="SceneEntityInfo.proto" />
+    <None Remove="SceneFishInfo.proto" />
+    <None Remove="SceneGadgetInfo.proto" />
+    <None Remove="SceneInitFinishReq.proto" />
+    <None Remove="SceneInitFinishRsp.proto" />
+    <None Remove="SceneMonsterInfo.proto" />
+    <None Remove="SceneNpcInfo.proto" />
+    <None Remove="SceneReliquaryInfo.proto" />
+    <None Remove="SceneTeamAvatar.proto" />
+    <None Remove="SceneTeamUpdateNotify.proto" />
+    <None Remove="SceneWeaponInfo.proto" />
+    <None Remove="ScreenInfo.proto" />
+    <None Remove="ServantInfo.proto" />
+    <None Remove="ServerBuff.proto" />
+    <None Remove="StatueGadgetInfo.proto" />
+    <None Remove="StopServerInfo.proto" />
+    <None Remove="TeamEnterSceneInfo.proto" />
+    <None Remove="TrialAvatarGrantRecord.proto" />
+    <None Remove="TrialAvatarInfo.proto" />
+    <None Remove="Vector.proto" />
+    <None Remove="VehicleInfo.proto" />
+    <None Remove="VehicleMember.proto" />
+    <None Remove="VisionType.proto" />
+    <None Remove="Weapon.proto" />
+    <None Remove="WeatherInfo.proto" />
+    <None Remove="WeeklyBossResinDiscountInfo.proto" />
+    <None Remove="WorktopInfo.proto" />
+  </ItemGroup>
+
+</Project>

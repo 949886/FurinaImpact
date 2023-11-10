@@ -1,0 +1,6 @@
+syntax = "proto3";
+option csharp_namespace = "FurinaImpact.Protocol";
+message FightPropPair {
+  float prop_value = 2;
+  uint32 prop_type = 1;
+}

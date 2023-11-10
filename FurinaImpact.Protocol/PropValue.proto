@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option csharp_namespace = "FurinaImpact.Protocol";
+message PropValue {
+  oneof value {
+    int64 ival = 2;
+    float fval = 3;
+  }
+  uint32 type = 1;
+  int64 val = 4;
+}

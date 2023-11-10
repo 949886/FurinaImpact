@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option csharp_namespace = "FurinaImpact.Protocol";
+message GetPlayerTokenRsp {
+  string sign = 1061;
+  string server_rand_key = 403;
+  bytes security_cmd_buffer = 10;
+  string country_code = 124;
+  uint32 platform_type = 7;
+  uint32 uid = 8;
+}

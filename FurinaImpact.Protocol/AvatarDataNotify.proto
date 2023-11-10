@@ -1,0 +1,11 @@
+syntax = "proto3";
+import "AvatarInfo.proto";
+import "AvatarTeam.proto";
+
+option csharp_namespace = "FurinaImpact.Protocol";
+message AvatarDataNotify {
+  repeated AvatarInfo avatar_list = 14;
+  map<uint32, AvatarTeam> avatar_team_map = 5;
+  uint32 cur_avatar_team_id = 12;
+  uint64 choose_avatar_guid = 8;
+}

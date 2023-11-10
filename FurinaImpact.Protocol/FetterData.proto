@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option csharp_namespace = "FurinaImpact.Protocol";
+message FetterData {
+  repeated uint32 cond_index_list = 3;
+  uint32 fetter_state = 2;
+  uint32 fetter_id = 1;
+}

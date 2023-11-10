@@ -1,0 +1,5 @@
+syntax = "proto3";
+option csharp_namespace = "FurinaImpact.Protocol";
+message PostEnterSceneRsp {
+  uint32 enter_scene_token = 11;
+}

@@ -1,0 +1,7 @@
+syntax = "proto3";
+option csharp_namespace = "FurinaImpact.Protocol";
+message EntityRendererChangedInfo {
+  map<string, uint32> changed_renderers = 1;
+  bool is_cached = 3;
+  uint32 visibility_count = 2;
+}

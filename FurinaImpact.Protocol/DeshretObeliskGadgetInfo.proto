@@ -1,0 +1,5 @@
+syntax = "proto3";
+option csharp_namespace = "FurinaImpact.Protocol";
+message DeshretObeliskGadgetInfo {
+  repeated uint32 argument_list = 1;
+}

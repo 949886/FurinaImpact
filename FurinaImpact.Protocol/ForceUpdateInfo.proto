@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+option csharp_namespace = "FurinaImpact.Protocol";
+message ForceUpdateInfo {
+  string force_update_url = 1;
+}

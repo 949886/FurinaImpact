@@ -1,0 +1,7 @@
+syntax = "proto3";
+option csharp_namespace = "FurinaImpact.Protocol";
+message FishPoolInfo {
+  repeated uint32 fish_area_list = 2;
+  uint32 pool_id = 1;
+  uint32 today_fish_num = 3;
+}
