@@ -1,4 +1,4 @@
-[EN](../README.md) | [简中](README_zh-CN.md) | [繁中](README_zh-TW.md)
+[EN](../README.md) | [简中](README_zh-CN.md) | [繁中](README_zh-TW.md)| [日本語](docs/README_ja-JP.md)
 
 # FurinaImpact
 用於某遊戲的伺服器後端重新實現。
