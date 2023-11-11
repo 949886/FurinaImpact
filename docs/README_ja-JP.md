@@ -1,4 +1,4 @@
-[EN](README.md) | [简中](docs/README_zh-CN.md) | [繁中](docs/README_zh-TW.md)| [日本語](docs/README_ja-JP.md)
+[EN](../README.md) | [简中](README_zh-CN.md) | [繁中](README_zh-TW.md) | [日本語](README_ja-JP.md)
 
 # FurinaImpact
 あるゲームのためのサーバーバックエンドの再実装。
