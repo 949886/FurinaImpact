@@ -1,3 +1,5 @@
+[EN](README.md) | [简中](docs/README_zh-CN.md) | [繁中](docs/README_zh-TW.md)
+
 # FurinaImpact
 Server backend reimplementation for some game.
 
