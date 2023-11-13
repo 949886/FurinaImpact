@@ -42,6 +42,7 @@
     <None Remove="AvatarInfo.proto" />
     <None Remove="AvatarSkillInfo.proto" />
     <None Remove="AvatarTeam.proto" />
+    <None Remove="AvatarTeamUpdateNotify.proto" />
     <None Remove="BlossomChestInfo.proto" />
     <None Remove="BossChestInfo.proto" />
     <None Remove="BreakoutAction.proto" />
@@ -140,6 +141,8 @@
     <None Remove="ScreenInfo.proto" />
     <None Remove="ServantInfo.proto" />
     <None Remove="ServerBuff.proto" />
+    <None Remove="SetUpAvatarTeamReq.proto" />
+    <None Remove="SetUpAvatarTeamRsp.proto" />
     <None Remove="StatueGadgetInfo.proto" />
     <None Remove="StopServerInfo.proto" />
     <None Remove="TeamEnterSceneInfo.proto" />

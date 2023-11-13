@@ -1,5 +1,6 @@
 ﻿using FurinaImpact.Common.Security;
 using FurinaImpact.Gameserver.Controllers.Dispatching;
+using FurinaImpact.Gameserver.Network.Session;
 using Microsoft.Extensions.Logging;
 
 namespace FurinaImpact.Gameserver.Network.Kcp;

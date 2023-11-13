@@ -1,5 +1,6 @@
 ﻿using System.Buffers.Binary;
 using FurinaImpact.Protocol;
+using Google.Protobuf;
 
 namespace FurinaImpact.Gameserver.Network;
 internal class NetPacket
@@ -10,6 +11,11 @@ internal class NetPacket
     public CmdType CmdType { get; set; }
     public Memory<byte> Head { get; set; }
     public Memory<byte> Body { get; set; }
+
+    public TBody DecodeBody<TBody>() where TBody : IMessage<TBody>, new()
+    {
+        return new MessageParser<TBody>(() => new()).ParseFrom(Body.Span);
+    }
 
     public int EncodeTo(Memory<byte> buffer)
     {
