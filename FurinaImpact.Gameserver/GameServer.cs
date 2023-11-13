@@ -1,4 +1,6 @@
-﻿using FurinaImpact.Gameserver.Network;
+﻿using FurinaImpact.Common.Data.Binout;
+using FurinaImpact.Common.Data.Excel;
+using FurinaImpact.Gameserver.Network;
 using Microsoft.Extensions.Hosting;
 
 namespace FurinaImpact.Gameserver;
@@ -6,8 +8,11 @@ internal class GameServer : IHostedService
 {
     private readonly IGateway _gateway;
 
-    public GameServer(IGateway gateway)
+    public GameServer(IGateway gateway, ExcelTableCollection excelTables, BinDataCollection binDataCollection)
     {
+        _ = excelTables;
+        _ = binDataCollection;
+
         _gateway = gateway;
     }
 

@@ -2,6 +2,8 @@
 using FurinaImpact.Common.Security;
 using FurinaImpact.Gameserver.Controllers.Attributes;
 using FurinaImpact.Gameserver.Controllers.Result;
+using FurinaImpact.Gameserver.Game;
+using FurinaImpact.Gameserver.Game.Avatar;
 using FurinaImpact.Protocol;
 
 namespace FurinaImpact.Gameserver.Controllers;
@@ -32,11 +34,13 @@ internal class AccountController : ControllerBase
     }
 
     [NetCommand(CmdType.PlayerLoginReq)]
-    public ValueTask<IResult> OnPlayerLoginReq()
+    public ValueTask<IResult> OnPlayerLoginReq(Player player)
     {
+        player.InitDefaultPlayer();
+
         AddNotify(CmdType.PlayerDataNotify, new PlayerDataNotify
         {
-            NickName = "FurinaImpact",
+            NickName = player.Name,
             PropMap =
             {
                 {PlayerProp.PROP_PLAYER_LEVEL, new() { Type = PlayerProp.PROP_PLAYER_LEVEL, Ival = 5 } },
@@ -49,118 +53,24 @@ internal class AccountController : ControllerBase
             }
         });
 
-        AddNotify(CmdType.AvatarDataNotify, new AvatarDataNotify
+        AvatarDataNotify avatarDataNotify = new()
         {
-            AvatarList =
-            {
-                new AvatarInfo
-                {
-                    AvatarId = 10000089,
-                    Guid = 5742371274756L,
-                    PropMap =
-                    {
-                        { 4001, new PropValue
-                        {
-                            Type = 4001,
-                            Ival = 1L,
-                            Fval = 0f,
-                            Val = 1L
-                        } },
-                        { 1001, new PropValue
-                        {
-                            Type = 1001,
-                            Ival = 0L,
-                            Fval = 0f,
-                            Val = 0L
-                        } },
-                        { 1002, new PropValue
-                        {
-                            Type = 1002,
-                            Ival = 0L,
-                            Fval = 0f,
-                            Val = 0L
-                        } },
-                        { 1003, new PropValue
-                        {
-                            Type = 1003,
-                            Ival = 0L,
-                            Fval = 0f,
-                            Val = 0L
-                        } },
-                        { 1004, new PropValue
-                        {
-                            Type = 1004,
-                            Ival = 0L,
-                            Fval = 0f,
-                            Val = 0L
-                        } }
-                    },
-                    LifeState = 1,
-                    EquipGuidList =
-                    {
-                        5742371274781L
-                    },
-                    FightPropMap =
-                    {
-                        { 1004, 0f },
-                        { 1010, 1039.4418f },
-                        { 4, 42.655724f },
-                        { 2001, 42.655724f },
-                        { 2002, 59.685677f },
-                        { 2000, 1039.4418f },
-                        { 74, 70f },
-                        { 1, 1039.4418f },
-                        { 7, 59.685677f },
-                        { 23, 1f },
-                        { 22, 0.5f },
-                        { 20, 0.05f }
-                    },
-                    SkillDepotId = 8901,
-                    FetterInfo = new AvatarFetterInfo
-                    {
-                        ExpNumber = 0,
-                        ExpLevel = 1,
-                        OpenIdList = {},
-                        FinishIdList = {},
-                        RewardedFetterLevelList = {},
-                        FetterList = { }
-                    },
-                    CoreProudSkillLevel = 0,
-                    InherentProudSkillList =
-                    {
-                        832301
-                    },
-                    SkillLevelMap =
-                    {
-                        { 10832, 1 },
-                        { 10835, 1 },
-                        { 10831, 1 }
-                    },
-                    ExpeditionState = AvatarExpeditionState.None,
-                    ProudSkillExtraLevelMap =
-                    {
-                        { 8331, 0 },
-                        { 8332, 0 },
-                        { 8339, 0 }
-                    },
-                    AvatarType = 1,
-                    WearingFlycloakId = 140001,
-                    BornTime = 1692707580,
-                },
-            },
             CurAvatarTeamId = 1,
-            ChooseAvatarGuid = 5742371274753L,
-            AvatarTeamMap =
-            {
-                { 1, new AvatarTeam
-                {
-                    AvatarGuidList =
-                    {
-                        5742371274756L,
-                    }
-                } },
-            },
-        });
+            AvatarTeamMap = { {1, new() } }
+        };
+
+        foreach (GameAvatar gameAvatar in player.Avatars)
+        {
+            avatarDataNotify.AvatarList.Add(gameAvatar.AsAvatarInfo());
+        }
+
+        if (player.TryGetAvatar(10000089, out GameAvatar? currentAvatar))
+        {
+            avatarDataNotify.AvatarTeamMap[1].AvatarGuidList.Add(currentAvatar.Guid);
+            avatarDataNotify.ChooseAvatarGuid = 228;
+        }
+
+        AddNotify(CmdType.AvatarDataNotify, avatarDataNotify);
 
         AddNotify(CmdType.OpenStateUpdateNotify, new OpenStateUpdateNotify
         {

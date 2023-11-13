@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 namespace FurinaImpact.Gameserver.Network.Kcp;
 internal class KcpSession : NetSession
 {
-    private const int MaxPacketSize = 16384;
+    private const int MaxPacketSize = 32768;
     private const int ReadTimeout = 30;
     private const int WriteTimeout = 30;
 

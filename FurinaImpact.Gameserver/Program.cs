@@ -1,5 +1,10 @@
-﻿using FurinaImpact.Gameserver;
+﻿using FurinaImpact.Common.Data;
+using FurinaImpact.Common.Data.Binout;
+using FurinaImpact.Common.Data.Excel;
+using FurinaImpact.Common.Data.Provider;
+using FurinaImpact.Gameserver;
 using FurinaImpact.Gameserver.Controllers.Dispatching;
+using FurinaImpact.Gameserver.Game;
 using FurinaImpact.Gameserver.Network;
 using FurinaImpact.Gameserver.Network.Kcp;
 using FurinaImpact.Gameserver.Options;
@@ -14,6 +19,16 @@ builder.Logging.AddSimpleConsole();
 
 builder.Services.Configure<GatewayOptions>(builder.Configuration.GetSection(GatewayOptions.Section));
 
+// Resources
+builder.Services.UseLocalAssets();
+builder.Services.AddSingleton<DataHelper>();
+builder.Services.AddSingleton<ExcelTableCollection>();
+builder.Services.AddSingleton<BinDataCollection>();
+
+// Game Logic
+builder.Services.AddScoped<Player>();
+
+// Network
 builder.Services.AddScoped<NetCommandDispatcher>();
 builder.Services.AddScoped<NetSession, KcpSession>();
 builder.Services.AddSingleton<IGateway, KcpGateway>();
