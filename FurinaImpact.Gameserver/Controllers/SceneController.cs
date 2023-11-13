@@ -31,7 +31,7 @@ internal class SceneController : ControllerBase
         bool furinaExists = player.TryGetAvatar(10000089, out GameAvatar? gameAvatar); // Currently hardcode to 10000089. It's definitely exists because of UnlockAllAvatars()
         if (!furinaExists) throw new InvalidOperationException("Furina doesn't exist? It's FurinaImpact, you should have Furina.");
 
-        SceneEntityInfo avatarEntity = new SceneEntityInfo
+        SceneEntityInfo avatarEntity = new()
         {
             EntityType = ProtEntityType.Avatar,
             EntityId = AvatarEntityId,
@@ -47,20 +47,6 @@ internal class SceneController : ControllerBase
                 Speed = new Vector(),
                 State = MotionState.None,
             },
-            PropList =
-                {
-                    new PropPair
-                    {
-                        Type = 4001,
-                        PropValue = new PropValue
-                        {
-                            Type = 4001,
-                            Ival = 1L,
-                            Fval = 0f,
-                            Val = 1L
-                        }
-                    }
-                },
             LifeState = 1, // ALIVE
             AnimatorParaList = { new AnimatorParameterValueInfoPair() },
             Avatar = new SceneAvatarInfo
@@ -117,8 +103,12 @@ internal class SceneController : ControllerBase
             },
         };
 
-        Dictionary<uint, FightPropPair> fightProps = GameAvatar.CreateFightProps();
-        foreach (FightPropPair pair in fightProps.Values)
+        foreach (PropValue propValue in gameAvatar.Properties)
+        {
+            avatarEntity.PropList.Add(new PropPair { Type = propValue.Type, PropValue = propValue });
+        }
+
+        foreach (FightPropPair pair in gameAvatar.FightProperties)
         {
             avatarEntity.FightPropList.Add(pair);
         }
@@ -189,20 +179,6 @@ internal class SceneController : ControllerBase
                     Rot = new Vector(),
                     Speed = new Vector(),
                     State = MotionState.None,
-                },
-                PropList =
-                {
-                    new PropPair
-                    {
-                        Type = 4001,
-                        PropValue = new PropValue
-                        {
-                            Type = 4001,
-                            Ival = 1L,
-                            Fval = 0f,
-                            Val = 1L
-                        }
-                    }
                 },
                 LifeState = 1, // ALIVE
                 AnimatorParaList = { new AnimatorParameterValueInfoPair() },
@@ -406,8 +382,12 @@ internal class SceneController : ControllerBase
             SceneId = 3,
         };
 
-        Dictionary<uint, FightPropPair> fightProps = GameAvatar.CreateFightProps();
-        foreach (FightPropPair pair in fightProps.Values)
+        foreach (PropValue propValue in gameAvatar.Properties)
+        {
+            sceneTeamAvatar.SceneEntityInfo.PropList.Add(new PropPair { Type = propValue.Type, PropValue = propValue });
+        }
+
+        foreach (FightPropPair pair in gameAvatar.FightProperties)
         {
             sceneTeamAvatar.SceneEntityInfo.FightPropList.Add(pair);
         }

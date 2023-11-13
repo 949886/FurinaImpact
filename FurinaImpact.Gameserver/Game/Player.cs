@@ -44,16 +44,18 @@ internal class Player
             if (AvatarBlackList.Contains(avatarExcel.Id) || avatarExcel.Id >= 11000000) continue;
 
             uint currentTimestamp = (uint)DateTimeOffset.Now.ToUnixTimeSeconds();
-            Avatars.Add(new()
+            GameAvatar avatar = new()
             {
                 AvatarId = avatarExcel.Id,
                 SkillDepotId = avatarExcel.SkillDepotId,
                 WeaponId = avatarExcel.InitialWeapon,
                 BornTime = currentTimestamp,
-                Level = 1,
                 Guid = NextGuid(),
                 WearingFlycloakId = 140001
-            });
+            };
+
+            avatar.InitDefaultProps(avatarExcel);
+            Avatars.Add(avatar);
         }
     }
 
