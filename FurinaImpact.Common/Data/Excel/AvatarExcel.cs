@@ -28,6 +28,9 @@ public class AvatarExcel : ExcelItem
     [JsonPropertyName("bodyType")]
     public required string BodyType { get; set; }
 
+    [JsonPropertyName("iconName")]
+    public required string IconName { get; set; }
+
     [JsonPropertyName("chargeEfficiency")]
     public double ChargeEfficiency { get; set; }
 

@@ -1,4 +1,7 @@
-﻿using FurinaImpact.Gameserver.Controllers.Attributes;
+﻿using FurinaImpact.Common.Data.Binout;
+using FurinaImpact.Common.Data.Binout.Ability;
+using FurinaImpact.Common.Extensions;
+using FurinaImpact.Gameserver.Controllers.Attributes;
 using FurinaImpact.Gameserver.Controllers.Result;
 using FurinaImpact.Gameserver.Game;
 using FurinaImpact.Gameserver.Game.Avatar;
@@ -126,7 +129,7 @@ internal class SceneController : ControllerBase
     }
 
     [NetCommand(CmdType.SceneInitFinishReq)]
-    public ValueTask<IResult> OnSceneInitFinishReq(Player player)
+    public ValueTask<IResult> OnSceneInitFinishReq(Player player, BinDataCollection binData)
     {
         bool furinaExists = player.TryGetAvatar(10000089, out GameAvatar? gameAvatar); // Currently hardcode to 10000089. It's definitely exists because of UnlockAllAvatars()
         if (!furinaExists) throw new InvalidOperationException("Furina doesn't exist? It's FurinaImpact, you should have Furina.");
@@ -240,145 +243,7 @@ internal class SceneController : ControllerBase
             WeaponGuid = GameAvatar.WeaponGuid,
             EntityId = AvatarEntityId,
             AvatarGuid = gameAvatar.Guid,
-            AbilityControlBlock = new AbilityControlBlock
-            {
-                // Hardcoded Furina abilities!
-                AbilityEmbryoList =
-                {
-                    new AbilityEmbryo
-                    {
-                        AbilityId = 4,
-                        AbilityNameHash = 1771261036,
-                        AbilityOverrideNameHash = 1178079449
-                    },
-                    new AbilityEmbryo
-                    {
-                        AbilityId = 5,
-                        AbilityNameHash = 1579824719,
-                        AbilityOverrideNameHash = 1178079449
-                    },
-                    new AbilityEmbryo
-                    {
-                        AbilityId = 6,
-                        AbilityNameHash = 1761247227,
-                        AbilityOverrideNameHash = 1178079449
-                    },
-                    new AbilityEmbryo
-                    {
-                        AbilityId = 7,
-                        AbilityNameHash = 2724697652,
-                        AbilityOverrideNameHash = 1178079449
-                    },
-                    new AbilityEmbryo
-                    {
-                        AbilityId = 8,
-                        AbilityNameHash = 2717776381,
-                        AbilityOverrideNameHash = 1178079449
-                    },
-                    new AbilityEmbryo
-                    {
-                        AbilityId = 9,
-                        AbilityNameHash = 3823646769,
-                        AbilityOverrideNameHash = 1178079449
-                    },
-                    new AbilityEmbryo
-                    {
-                        AbilityId = 10,
-                        AbilityNameHash = 1972985736,
-                        AbilityOverrideNameHash = 1178079449
-                    },
-                    new AbilityEmbryo
-                    {
-                        AbilityId = 11,
-                        AbilityNameHash = 3187135836,
-                        AbilityOverrideNameHash = 1178079449
-                    },
-                    new AbilityEmbryo
-                    {
-                        AbilityId = 12,
-                        AbilityNameHash = 2678974399,
-                        AbilityOverrideNameHash = 1178079449
-                    },
-                    new AbilityEmbryo
-                    {
-                        AbilityId = 13,
-                        AbilityNameHash = 1771196189,
-                        AbilityOverrideNameHash = 1178079449
-                    },
-                    new AbilityEmbryo
-                    {
-                        AbilityId = 14,
-                        AbilityNameHash = 2306062007,
-                        AbilityOverrideNameHash = 1178079449
-                    },
-                    new AbilityEmbryo
-                    {
-                        AbilityId = 15,
-                        AbilityNameHash = 3105629177,
-                        AbilityOverrideNameHash = 1178079449
-                    },
-                    new AbilityEmbryo
-                    {
-                        AbilityId = 16,
-                        AbilityNameHash = 3771526669,
-                        AbilityOverrideNameHash = 1178079449
-                    },
-                    new AbilityEmbryo
-                    {
-                        AbilityId = 17,
-                        AbilityNameHash = 100636247,
-                        AbilityOverrideNameHash = 1178079449
-                    },
-                    new AbilityEmbryo
-                    {
-                        AbilityId = 18,
-                        AbilityNameHash = 1564404322,
-                        AbilityOverrideNameHash = 1178079449
-                    },
-                    new AbilityEmbryo
-                    {
-                        AbilityId = 19,
-                        AbilityNameHash = 497711942,
-                        AbilityOverrideNameHash = 1178079449
-                    },
-                    new AbilityEmbryo
-                    {
-                        AbilityId = 20,
-                        AbilityNameHash = 3531639848,
-                        AbilityOverrideNameHash = 1178079449
-                    },
-                    new AbilityEmbryo
-                    {
-                        AbilityId = 21,
-                        AbilityNameHash = 4255783285,
-                        AbilityOverrideNameHash = 1178079449
-                    },
-                    new AbilityEmbryo
-                    {
-                        AbilityId = 22,
-                        AbilityNameHash = 3829597473,
-                        AbilityOverrideNameHash = 1178079449
-                    },
-                    new AbilityEmbryo
-                    {
-                        AbilityId = 23,
-                        AbilityNameHash = 4183357155,
-                        AbilityOverrideNameHash = 1178079449
-                    },
-                    new AbilityEmbryo
-                    {
-                        AbilityId = 24,
-                        AbilityNameHash = 3052628990,
-                        AbilityOverrideNameHash = 1178079449
-                    },
-                    new AbilityEmbryo
-                    {
-                        AbilityId = 25,
-                        AbilityNameHash = 825255509,
-                        AbilityOverrideNameHash = 1178079449
-                    }
-                }
-            },
+            AbilityControlBlock = new(),
             SceneId = 3,
         };
 
@@ -390,6 +255,29 @@ internal class SceneController : ControllerBase
         foreach (FightPropPair pair in gameAvatar.FightProperties)
         {
             sceneTeamAvatar.SceneEntityInfo.FightPropList.Add(pair);
+        }
+
+        AvatarConfig avatarConfig = binData.GetAvatarConfig(gameAvatar.AvatarId);
+
+        uint defaultOverrideHash = "Default".GetStableHash();
+        foreach (string abilityName in binData.CommonAbilities)
+        {
+            sceneTeamAvatar.AbilityControlBlock.AbilityEmbryoList.Add(new AbilityEmbryo
+            {
+                AbilityId = (uint)(sceneTeamAvatar.AbilityControlBlock.AbilityEmbryoList.Count + 1),
+                AbilityNameHash = abilityName.GetStableHash(),
+                AbilityOverrideNameHash = defaultOverrideHash
+            });
+        }
+
+        foreach (AbilityData ability in avatarConfig.Abilities)
+        {
+            sceneTeamAvatar.AbilityControlBlock.AbilityEmbryoList.Add(new AbilityEmbryo
+            {
+                AbilityId = (uint)(sceneTeamAvatar.AbilityControlBlock.AbilityEmbryoList.Count + 1),
+                AbilityNameHash = ability.AbilityName.GetStableHash(),
+                AbilityOverrideNameHash = ability.GetAbilityOverride().GetStableHash()
+            });
         }
 
         AddNotify(CmdType.SceneTeamUpdateNotify, new SceneTeamUpdateNotify
