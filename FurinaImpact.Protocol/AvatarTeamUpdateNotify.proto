@@ -1,0 +1,7 @@
+syntax = "proto3";
+import "AvatarTeam.proto";
+
+option csharp_namespace = "FurinaImpact.Protocol";
+message AvatarTeamUpdateNotify {
+	map<uint32, AvatarTeam> avatar_team_map = 1;
+}

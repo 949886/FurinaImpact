@@ -3,9 +3,10 @@ using FurinaImpact.Common.Security;
 using FurinaImpact.Gameserver.Controllers.Dispatching;
 using FurinaImpact.Gameserver.Controllers.Result;
 using FurinaImpact.Protocol;
+using Google.Protobuf;
 using Microsoft.Extensions.Logging;
 
-namespace FurinaImpact.Gameserver.Network;
+namespace FurinaImpact.Gameserver.Network.Session;
 internal abstract class NetSession : IDisposable
 {
     public IPEndPoint EndPoint => _networkUnit!.RemoteEndPoint;
@@ -39,6 +40,16 @@ internal abstract class NetSession : IDisposable
         _sessionManager.Add(this);
     }
 
+    public async Task NotifyAsync<TNotify>(CmdType cmdType, TNotify notify) where TNotify : IMessage<TNotify>
+    {
+        await SendAsync(new()
+        {
+            CmdType = cmdType,
+            Head = Memory<byte>.Empty,
+            Body = notify.ToByteArray()
+        });
+    }
+
     protected async ValueTask<int> ConsumePacketsAsync(Memory<byte> buffer)
     {
         if (buffer.Length < 12)
@@ -65,7 +76,7 @@ internal abstract class NetSession : IDisposable
                         InitializeEncryption(1337); // hardcoded MT seed with patch
                     }
                 }
-                
+
                 _logger.LogInformation("Successfully handled command of type {cmdType}", packet.CmdType);
             }
         } while (buffer.Length - consumed >= 12);
@@ -83,7 +94,7 @@ internal abstract class NetSession : IDisposable
         using CancellationTokenSource cancellationTokenSource = new(TimeSpan.FromSeconds(timeoutSeconds));
         return await _networkUnit!.ReceiveAsync(buffer, cancellationTokenSource.Token);
     }
-    
+
     protected async ValueTask WriteWithTimeoutAsync(Memory<byte> buffer, int timeoutSeconds)
     {
         using CancellationTokenSource cancellationTokenSource = new(TimeSpan.FromSeconds(timeoutSeconds));

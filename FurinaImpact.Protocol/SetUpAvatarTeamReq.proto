@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option csharp_namespace = "FurinaImpact.Protocol";
+message SetUpAvatarTeamReq {
+  repeated uint64 avatar_team_guid_list = 8;
+  uint64 cur_avatar_guid = 14;
+  uint32 team_id = 15;
+}

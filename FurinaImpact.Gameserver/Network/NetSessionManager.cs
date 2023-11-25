@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using FurinaImpact.Gameserver.Network.Session;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 

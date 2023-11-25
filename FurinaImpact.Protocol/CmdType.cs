@@ -33,5 +33,9 @@ public enum CmdType
 
     // Step 5
     PostEnterSceneReq = 26222,
-    PostEnterSceneRsp = 23949
+    PostEnterSceneRsp = 23949,
+
+    SetUpAvatarTeamReq = 28806,
+    SetUpAvatarTeamRsp = 2990,
+    AvatarTeamUpdateNotify = 409,
 }

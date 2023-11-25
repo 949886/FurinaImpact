@@ -5,8 +5,13 @@ using FurinaImpact.Common.Data.Provider;
 using FurinaImpact.Gameserver;
 using FurinaImpact.Gameserver.Controllers.Dispatching;
 using FurinaImpact.Gameserver.Game;
+using FurinaImpact.Gameserver.Game.Entity;
+using FurinaImpact.Gameserver.Game.Entity.Factory;
+using FurinaImpact.Gameserver.Game.Entity.Listener;
+using FurinaImpact.Gameserver.Game.Scene;
 using FurinaImpact.Gameserver.Network;
 using FurinaImpact.Gameserver.Network.Kcp;
+using FurinaImpact.Gameserver.Network.Session;
 using FurinaImpact.Gameserver.Options;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -27,6 +32,12 @@ builder.Services.AddSingleton<BinDataCollection>();
 
 // Game Logic
 builder.Services.AddScoped<Player>();
+builder.Services.AddScoped<SceneManager>();
+builder.Services.AddScoped<EntityManager>();
+builder.Services.AddScoped<EntityFactory>();
+
+// Logic Listeners
+builder.Services.AddScoped<IEntityEventListener, SessionEntityEventListener>();
 
 // Network
 builder.Services.AddScoped<NetCommandDispatcher>();

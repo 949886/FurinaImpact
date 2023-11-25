@@ -4,6 +4,8 @@ using FurinaImpact.Gameserver.Controllers.Attributes;
 using FurinaImpact.Gameserver.Controllers.Result;
 using FurinaImpact.Gameserver.Game;
 using FurinaImpact.Gameserver.Game.Avatar;
+using FurinaImpact.Gameserver.Game.Scene;
+using FurinaImpact.Gameserver.Network.Session;
 using FurinaImpact.Protocol;
 
 namespace FurinaImpact.Gameserver.Controllers;
@@ -34,11 +36,11 @@ internal class AccountController : ControllerBase
     }
 
     [NetCommand(CmdType.PlayerLoginReq)]
-    public ValueTask<IResult> OnPlayerLoginReq(Player player)
+    public async ValueTask<IResult> OnPlayerLoginReq(NetSession session, Player player, SceneManager sceneManager)
     {
         player.InitDefaultPlayer();
 
-        AddNotify(CmdType.PlayerDataNotify, new PlayerDataNotify
+        await session.NotifyAsync(CmdType.PlayerDataNotify, new PlayerDataNotify
         {
             NickName = player.Name,
             PropMap =
@@ -55,8 +57,8 @@ internal class AccountController : ControllerBase
 
         AvatarDataNotify avatarDataNotify = new()
         {
-            CurAvatarTeamId = 1,
-            AvatarTeamMap = { {1, new() } }
+            CurAvatarTeamId = player.CurTeamIndex,
+            ChooseAvatarGuid = 228
         };
 
         foreach (GameAvatar gameAvatar in player.Avatars)
@@ -64,15 +66,17 @@ internal class AccountController : ControllerBase
             avatarDataNotify.AvatarList.Add(gameAvatar.AsAvatarInfo());
         }
 
-        if (player.TryGetAvatar(10000089, out GameAvatar? currentAvatar))
+        foreach (GameAvatarTeam team in player.AvatarTeams)
         {
-            avatarDataNotify.AvatarTeamMap[1].AvatarGuidList.Add(currentAvatar.Guid);
-            avatarDataNotify.ChooseAvatarGuid = 228;
+            AvatarTeam avatarTeam = new();
+            avatarTeam.AvatarGuidList.AddRange(team.AvatarGuidList);
+
+            avatarDataNotify.AvatarTeamMap.Add(team.Index, avatarTeam);
         }
 
-        AddNotify(CmdType.AvatarDataNotify, avatarDataNotify);
+        await session.NotifyAsync(CmdType.AvatarDataNotify, avatarDataNotify);
 
-        AddNotify(CmdType.OpenStateUpdateNotify, new OpenStateUpdateNotify
+        await session.NotifyAsync(CmdType.OpenStateUpdateNotify, new OpenStateUpdateNotify
         {
             OpenStateMap =
             {
@@ -136,33 +140,13 @@ internal class AccountController : ControllerBase
             }
         });
 
-        AddNotify(CmdType.PlayerEnterSceneNotify, new PlayerEnterSceneNotify
-        {
-            SceneTagIdList = { },
-            SceneBeginTime = (ulong)DateTimeOffset.Now.ToUnixTimeSeconds(),
-            SceneId = 3,
-            SceneTransaction = "3-1337-1699517719-13830",
-            Pos = new()
-            {
-                X = 2191.16357421875f,
-                Y = 214.65115356445312f,
-                Z = -1120.633056640625f
-            },
-            TargetUid = 1337,
-            UnkUid1020 = 1337,
-            EnterSceneToken = SceneController.EnterSceneToken,
-            PrevPos = new(),
-            Unk13 = 1,
-            Unk3 = 1,
-            Unk449 = 1,
-            Unk834 = 1
-        });
+        await sceneManager.EnterSceneAsync(3);
 
-        return ValueTask.FromResult(Response(CmdType.PlayerLoginRsp, new PlayerLoginRsp
+        return Response(CmdType.PlayerLoginRsp, new PlayerLoginRsp
         {
             CountryCode = "RU",
             GameBiz = "hk4e_global",
             ResVersionConfig = new()
-        }));
+        });
     }
 }

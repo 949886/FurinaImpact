@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using FurinaImpact.Common.Data.Excel;
 using FurinaImpact.Gameserver.Game.Avatar;
+using FurinaImpact.Gameserver.Game.Scene;
 
 namespace FurinaImpact.Gameserver.Game;
 internal class Player
@@ -10,7 +11,10 @@ internal class Player
     public uint Uid { get; set; }
     public uint GuidSeed { get; set; }
     public string Name { get; set; }
+
     public List<GameAvatar> Avatars { get; set; }
+    public List<GameAvatarTeam> AvatarTeams { get; set; }
+    public uint CurTeamIndex { get; set; }
 
     private readonly ExcelTableCollection _excelTables;
 
@@ -18,6 +22,7 @@ internal class Player
     {
         Name = "Traveler";
         Avatars = new();
+        AvatarTeams = new();
 
         _excelTables = excelTables;
     }
@@ -30,7 +35,18 @@ internal class Player
         Name = "FurinaImpact";
 
         UnlockAllAvatars();
+
+        _ = TryGetAvatar(10000089, out GameAvatar? avatar);
+        AvatarTeams.Add(new()
+        {
+            AvatarGuidList = new() { avatar!.Guid },
+            Index = 1
+        });
+        CurTeamIndex = 1;
     }
+
+    public GameAvatarTeam GetCurrentTeam()
+        => AvatarTeams.Find(team => team.Index == CurTeamIndex)!;
 
     public bool TryGetAvatar(uint avatarId, [MaybeNullWhen(false)] out GameAvatar avatar)
         => (avatar = Avatars.Find(a => a.AvatarId == avatarId)) != null;
